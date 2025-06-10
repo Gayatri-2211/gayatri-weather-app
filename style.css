@@ -1,0 +1,166 @@
+ body {
+            margin: 0;
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 1s ease-in-out; 
+            position: relative; 
+        }
+
+        .container {
+            border: 2px solid white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(5px); 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+        }
+
+        .txt {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .time {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .weather {
+            font-size: 1.3rem; 
+            line-height: 1.5;
+        }
+
+      
+        .bg-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind the container */
+            transition: background 2s ease-in-out;
+        }
+
+        /* Sunny background */
+        .bg-sunny {
+            background: linear-gradient(to top, #87CEEB, #add8e6, #ADD8E6); /* Soft blue sky */
+        }
+
+        /* Rainy background */
+        .bg-rainy {
+            background: linear-gradient(to bottom, #4a5568, #2d3748, #1a202c); /* Darker grey for rain */
+        }
+
+        /* Cloudy background */
+        .bg-cloudy {
+            background: linear-gradient(to bottom, #718096, #5a667d, #3e4a5d); /* Muted grey for clouds */
+        }
+
+        /* Thunderstorm background (darker, more dramatic) */
+        .bg-thunderstorm {
+            background: linear-gradient(to bottom, #1a202c, #0d121f); /* Very dark, almost black */
+        }
+
+        /* Default background */
+        .bg-default {
+            background-color: #212121; /* Dark default */
+        }
+
+
+        /* --- Sun Rays Effect --- */
+        .sun {
+            position: absolute;
+            top: 10%; /* Position from top */
+            left: 10%; /* Position from left */
+            width: 150px; /* Size of the sun */
+            height: 150px;
+            background: radial-gradient(circle at center, #FFD700 0%, #FFA500 50%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 50px #FFA500, 0 0 100px #FFD700;
+            z-index: 1;
+            transform-origin: 50% 50%; /* Center for rotation */
+        }
+
+        .sun-ray {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+            border-radius: 50%;
+            animation: sunBeam 15s infinite linear;
+            opacity: 0.7;
+        }
+
+        /* Different sizes and positions for rays */
+        .sun-ray:nth-child(1) { width: 300px; height: 300px; top: -75px; left: -75px; animation-delay: 0s; }
+        .sun-ray:nth-child(2) { width: 250px; height: 250px; top: -50px; left: -50px; animation-delay: 2s; }
+        .sun-ray:nth-child(3) { width: 350px; height: 350px; top: -100px; left: -100px; animation-delay: 4s; }
+        .sun-ray:nth-child(4) { width: 280px; height: 280px; top: -60px; left: -60px; animation-delay: 6s; }
+
+        @keyframes sunBeam {
+            0% { transform: rotate(0deg); opacity: 0.7; }
+            50% { opacity: 0.9; }
+            100% { transform: rotate(360deg); opacity: 0.7; }
+        }
+
+        /* --- Rain Drops Effect --- */
+        .rain-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+
+        .raindrop {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background-color: rgba(174, 194, 224, 0.6); /* Semi-transparent blueish-white */
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(5vw); /* Slight horizontal drift */
+                opacity: 0;
+            }
+        }
+        .thunderbolt-flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 5; /* Above background, below container */
+            opacity: 0;
+            animation: thunderFlash 0.3s forwards; /* Animation for a brief flash */
+        }
+
+        @keyframes thunderFlash {
+            0% { opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
